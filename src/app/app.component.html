@@ -1,0 +1,37 @@
+<div id="container">
+  <form (ngSubmit)="onSubmit(TodoForm)" #TodoForm="ngForm">
+  <div class="form-row" >
+    <div class="form-group col-md-6"> 
+      <label for="todo">Todo</label>
+      <input type="text" class="form-control" id="task" name="task" ngModel placeholder="Task.." ngModel>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="Status">Satus</label>
+      <select id="status" name="status" class="form-control" ngModel>
+        <option selected value="Todo">Todo</option>
+        <option value="InPrograss">InPrograss</option>
+        <option value="Done">Done</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">submit</button>
+</form>
+<br>
+<input type="text" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Search By status">
+<table class="col-md-4">
+  <thead>
+    <tr class="table-head">
+        <th class="th-value" style="padding-left: 32px;" scope="col">Todo Task</th>
+        <th class="th-value" scope="col">status</th>
+        
+    </tr>
+</thead>
+<tbody>
+  <tr  *ngFor="let data of (todo | searchByStatus: searchText)" class="table table-sm" >
+    <td class="col-md" style="cursor: pointer;padding-left: 32px;"> {{ data.task }} </td>
+    <td class="col-md display_name" style="cursor: pointer;" > {{ data.status }}</td>
+</tr>
+</tbody>
+</table>
+ 
+</div>
